@@ -10,7 +10,18 @@
     "Microsoft.AspNetCore.Mvc.Razor": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
     "Npgsql.EntityFrameworkCore.PostgreSQL": "1.0.0-rc2-release1",
-    "SmallCode.AspNetCore.Extensions": "1.0.0-*"
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview1-final",
+      "type": "build"
+    },
+    "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Logging.Console": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.0.0-rc2-final",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0-rc2-final",
+    "SmallCode.AspNetCore.Extensions": "1.0.0-*",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final"
   },
 
   "tools": {

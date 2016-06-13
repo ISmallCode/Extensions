@@ -6,24 +6,60 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using SmallCode.AspNetCore.Extensions.Models;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using SmallCode.AspCore.Extensions.Sample.Models;
+using Microsoft.EntityFrameworkCore;
 using SmallCode.AspNetCore.Extensions.Middlewares;
+using SmallCode.AspCore.Extensions.Sample.Controllers;
 
 namespace SmallCode.AspCore.Extensions.Sample
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+               .SetBasePath(env.ContentRootPath)
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+               .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            if (env.IsDevelopment())
+            {
+            }
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
+        }
+
+        public IConfigurationRoot Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SampleContext>(option => option.UseNpgsql(Configuration.GetConnectionString("PostgreSql")));
+
             services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseTraceLog();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
+            app.UseExceptionHandler("/Home/Error");
+
+            app.UseStaticFiles();
+            
+            app.UseTraceLog(BaseController.SaveLog());
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                   template: "{controller=Home}/{action=Index}/{id?}");
+            }
+           );
             await SampleData.InitDB(app.ApplicationServices);
         }
     }

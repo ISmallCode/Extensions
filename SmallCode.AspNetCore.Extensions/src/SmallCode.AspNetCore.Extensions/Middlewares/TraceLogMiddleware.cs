@@ -6,28 +6,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace SmallCode.AspNetCore.Extensions.Middlewares
 {
     public static class TraceLogMiddleware
     {
-        public static IApplicationBuilder UseTraceLog(this IApplicationBuilder app)
+        public static IApplicationBuilder UseTraceLog(this IApplicationBuilder app, Func<Log, bool> func)
         {
-            return app.UseMiddleware<TraceLog>();
+            return app.UseMiddleware<TraceLog>(func);
         }
     }
 
     public class TraceLog
     {
         private readonly RequestDelegate next;
-        public TraceLog(RequestDelegate next)
+        private readonly Func<Log, bool> func;
+        public TraceLog(RequestDelegate next, Func<Log, bool> _func)
         {
             this.next = next;
+            func = _func;
         }
         public async Task Invoke(HttpContext context)
         {
+
             string ip = context.Request.HttpContext.Connection.RemoteIpAddress.ToString();
-            var db = context.RequestServices.GetService<SmallCodeContext>();
             try
             {
                 string url = context.Request.Path.Value;
@@ -37,8 +40,7 @@ namespace SmallCode.AspNetCore.Extensions.Middlewares
                     Level = LogLevel.记录,
                     Ip = ip,
                 };
-                db.Logs.Add(log);
-                await db.SaveChangesAsync();
+                func(log);
                 await next(context);
             }
             catch (Exception ex)
@@ -49,8 +51,7 @@ namespace SmallCode.AspNetCore.Extensions.Middlewares
                     Level = LogLevel.记录,
                     Ip = ip,
                 };
-                db.Logs.Add(log);
-                await db.SaveChangesAsync();
+                func(log);
                 context.Response.Redirect("/Home/Error");
             }
         }

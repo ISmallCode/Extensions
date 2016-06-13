@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SmallCode.AspNetCore.Extensions.Models
 {
-    public class SmallCodeContext : DbContext
+    public abstract class SmallCodeContext<T> : DbContext
+         where T : class
     {
         public SmallCodeContext(DbContextOptions option) : base(option)
         {
@@ -14,8 +15,7 @@ namespace SmallCode.AspNetCore.Extensions.Models
 
         public DbSet<Log> Logs { set; get; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-        }
+        public DbSet<T> Users { set; get; }
+
     }
 }

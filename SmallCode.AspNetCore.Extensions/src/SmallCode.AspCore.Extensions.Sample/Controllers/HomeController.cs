@@ -16,5 +16,10 @@ namespace SmallCode.AspCore.Extensions.Sample.Controllers
             return View();
         }
 
+
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 namespace SmallCode.AspNetCore.Extensions.Models
 {
-    public class SampleData
+    public class SmallCodeUser
     {
+        public Guid Id { set; get; }
+
+        public string UserName { set; get; }
+
+        public string Password { set; get; }
     }
 }

@@ -7,13 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SmallCode.AspCore.Extensions.Sample.Models
 {
-    public class SampleContext : SmallCodeContext
+    public class SampleContext : SmallCodeContext<User>
     {
         public SampleContext(DbContextOptions option) : base(option)
         {
         }
-
-        public DbSet<User> Users { set; get; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
