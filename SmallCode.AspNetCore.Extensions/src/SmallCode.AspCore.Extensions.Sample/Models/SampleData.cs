@@ -27,12 +27,5 @@ namespace SmallCode.AspCore.Extensions.Sample.Models
                 await db.SaveChangesAsync();
             }
         }
-
-        public void SaveLog(Log log)
-        {
-            var db = service.GetService<SampleContext>();
-            db.Logs.Add(db);
-            db.SaveChanges();
-        }
     }
 }
