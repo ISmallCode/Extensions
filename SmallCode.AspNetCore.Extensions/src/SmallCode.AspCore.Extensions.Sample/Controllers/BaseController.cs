@@ -8,9 +8,11 @@ using SmallCode.AspCore.Extensions.Sample.Models;
 using Microsoft.Extensions.DependencyInjection;
 using SmallCode.AspNetCore.Extensions.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmallCode.AspCore.Extensions.Sample.Controllers
 {
+    [Authorize]
     public class BaseController : SCBaseController
     {
         public User CurrentUser { set; get; }

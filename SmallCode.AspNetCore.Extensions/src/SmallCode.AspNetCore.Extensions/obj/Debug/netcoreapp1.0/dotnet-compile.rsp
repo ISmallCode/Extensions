@@ -146,13 +146,12 @@
 --reference:C:\Users\乐\.nuget\packages\System.Xml.ReaderWriter\4.0.11-rc2-24027\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\乐\.nuget\packages\System.Xml.XDocument\4.0.11-rc2-24027\ref\netstandard1.3\System.Xml.XDocument.dll
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Attributes\InjectAttribute.cs
-D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Controllers\SCAccountController.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Controllers\SCBaseController.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Extensions\DateExtension.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Extensions\EnumerableExtension.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Extensions\QueryableExtension.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Extensions\StringExtension.cs
-D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Helper\DateHelper.cs
+D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Helpers\DateHelper.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Middlewares\SCAuthenticationExtension.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Middlewares\TraceLogMiddleware.cs
 D:\document\work\frame\Extensions\SmallCode.AspNetCore.Extensions\src\SmallCode.AspNetCore.Extensions\Models\Log.cs

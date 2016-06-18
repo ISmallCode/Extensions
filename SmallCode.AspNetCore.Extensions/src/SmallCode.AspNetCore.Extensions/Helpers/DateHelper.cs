@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SmallCode.AspNetCore.Extensions.Helper
+namespace SmallCode.AspNetCore.Extensions.Helpers
 {
     public class DateHelper
     {

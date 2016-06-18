@@ -51,7 +51,9 @@ namespace SmallCode.AspCore.Extensions.Sample
             app.UseExceptionHandler("/Home/Error");
 
             app.UseStaticFiles();
-        
+
+            app.UseSCAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

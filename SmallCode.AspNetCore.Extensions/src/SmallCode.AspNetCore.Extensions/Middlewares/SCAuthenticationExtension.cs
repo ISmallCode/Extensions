@@ -10,7 +10,7 @@ namespace SmallCode.AspNetCore.Extensions.Middlewares
 {
     public static class SCAuthenticationExtension
     {
-        public static IApplicationBuilder UseSCAuthentication(this IApplicationBuilder app, string RedirctUrl)
+        public static IApplicationBuilder UseSCAuthentication(this IApplicationBuilder app, string RedirctUrl = "/Account/Login")
         {
             return app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
