@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SmallCode.AspNetCore.Extensions.Middlewares
 {
+    [Obsolete]
     public static class TraceLogMiddleware
     {
         public static IApplicationBuilder UseTraceLog(this IApplicationBuilder app, Func<Log, bool> func)
@@ -18,6 +19,7 @@ namespace SmallCode.AspNetCore.Extensions.Middlewares
         }
     }
 
+    [Obsolete]
     public class TraceLog
     {
         private readonly RequestDelegate next;

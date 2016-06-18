@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Filters;
+using SmallCode.AspNetCore.Extensions.Models;
 
 namespace SmallCode.AspNetCore.Extensions.Controllers
 {
-    public class SmallCodeBaseController : Controller
+    public class SCBaseController : Controller
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             OnInit();
+            SaveLog();
             base.OnActionExecuting(context);
         }
 
@@ -19,5 +21,12 @@ namespace SmallCode.AspNetCore.Extensions.Controllers
         {
 
         }
+
+        public virtual void SaveLog()
+        {
+
+        }
+
+        
     }
 }

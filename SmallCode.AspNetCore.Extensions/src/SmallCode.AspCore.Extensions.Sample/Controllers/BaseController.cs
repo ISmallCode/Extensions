@@ -7,26 +7,38 @@ using SmallCode.AspNetCore.Extensions.Controllers;
 using SmallCode.AspCore.Extensions.Sample.Models;
 using Microsoft.Extensions.DependencyInjection;
 using SmallCode.AspNetCore.Extensions.Models;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.EntityFrameworkCore;
 
 namespace SmallCode.AspCore.Extensions.Sample.Controllers
 {
-    public class BaseController : SmallCodeBaseController
+    public class BaseController : SCBaseController
     {
+        public User CurrentUser { set; get; }
+
         public SampleContext db { get { return HttpContext.RequestServices.GetService<SampleContext>(); } }
 
         public override void OnInit()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                CurrentUser = db.Users.Where(x => x.UserName == HttpContext.User.Identity.Name).SingleOrDefault();
+                ViewBag.CurrentUser = CurrentUser;
+            }
             base.OnInit();
         }
 
-        public bool SaveLog(Log log)
+        public override void SaveLog()
         {
-            bool flag = false;
+            string url = HttpContext.Request.Path.Value;
+            string ip = HttpContext.Request.HttpContext.Connection.RemoteIpAddress.ToString();
+            Log log = new Log()
+            {
+                Description = "访问了" + url,
+                Level = LogLevel.记录,
+                Ip = ip,
+            };
             db.Logs.Add(log);
-            flag = db.SaveChanges() > 0;
-            return flag;
+            db.SaveChanges();
         }
 
     }
